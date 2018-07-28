@@ -15,11 +15,11 @@ class ChecklistsController < ApplicationController
     @checklists = current_user.checklists
   end
 
-  def complete
-    @activity = Activity.find(params[:activity_id])
-    @complete = Checklist.create(activity: @activity, user: current_user)
-    @complete.save
-    redirect_to activities_path
+  def destroy
+    @checklist = Checklist.find(params[:id])
+    @checklist.destroy
+    redirect_to checklist_path
   end
+
 
 end

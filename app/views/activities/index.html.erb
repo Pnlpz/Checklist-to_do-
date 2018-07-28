@@ -7,10 +7,10 @@
               <%= image_tag activity.photo, class: 'card-img-top' %>
             <div class="body">
               <h5> <%= activity.name %> </h5>
-              <% if user.checklist.complete.exists? %>
+              <% unless activity.completed?(current_user) %>
               <%= link_to "To Do", activity_checklists_path(activity), class: "btn btn-success", method: :post %>
               <% else %>
-              <%= link_to "Done", activity_checklists_path(activity), class: "btn btn-warning", method: :post %>
+              <%= link_to "Done", activity_checklists_path(activity), class: "btn btn-danger", method: :post %>
               <% end %>
             </div>
           </div>

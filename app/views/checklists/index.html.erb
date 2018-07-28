@@ -4,6 +4,10 @@
         <td>
           <%= checklist.activity.name %>
         </td>
+        <td>
+          <a href="<%= checklists_path %>">  <button type="button" class="btn btn-danger">
+              Delete <span class="badge badge-light"></span>
+            </button>  </a>        </td>
     </tr>
   <% end %>
 </table>
