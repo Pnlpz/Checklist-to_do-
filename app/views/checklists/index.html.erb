@@ -1,0 +1,9 @@
+<table class= "table">
+  <% @checklists.each do |checklist| %>
+    <tr>
+        <td>
+          <%= checklist.activity.name %>
+        </td>
+    </tr>
+  <% end %>
+</table>
