@@ -2,14 +2,24 @@ class ChecklistsController < ApplicationController
   before_action :authenticate_user!
 
   def create
+
     @activity = Activity.find(params[:activity_id])
-    @checklist = Checklist.new(activity: @activity, user: current_user)
-    if @checklist.save
-      redirect_to activities_path, notice: 'You have completed this activity! Yey!'
+    @activities = current_user.activities
+    if @activities.include?(@activity)
+      @activities.destroy(@activity)
+      redirect_to activities_path, notice: 'deleted'
     else
-      redirect_to activities_path, alert: 'You have not completed this activity, yet.'
+      @activities << @activity
+      redirect_to activities_path, notice: 'You have completed this activity! Yey!'
     end
+
   end
+
+def edit
+  @activity = Activity.find(params[:activity_id])
+  @activity = !@activity
+  redirect_to activities_path
+end
 
   def index
     @checklists = current_user.checklists
